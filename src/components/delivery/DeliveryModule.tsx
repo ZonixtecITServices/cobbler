@@ -343,105 +343,339 @@ export function DeliveryModule() {
 
   // Original JSX return - COMPLETELY UNCHANGED except data source
   return (
-    <div className="space-y-4 sm:space-y-6 animate-fade-in p-2 sm:p-0">
+    <>
+      <style>{`
+        @media (min-width: 1280px) {
+          .delivery-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (min-width: 640px) {
+          .delivery-actions {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (min-width: 1024px) {
+          .stats-grid {
+            grid-template-columns: repeat(4, 1fr) !important;
+          }
+        }
+      `}</style>
+      <div className="space-y-4 sm:space-y-6 animate-fade-in p-2 sm:p-0" style={{ 
+        minHeight: '100vh',
+        WebkitFontSmoothing: 'antialiased',
+        MozOsxFontSmoothing: 'grayscale'
+      }}>
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4" style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'stretch'
+      }}>
+        <div style={{ flex: '1 1 auto', minWidth: '0' }}>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground" style={{
+            fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+            lineHeight: '1.2',
+            wordBreak: 'break-word'
+          }}>
             Delivery Management
           </h1>
-          <p className="text-sm sm:text-base text-muted-foreground">
+          <p className="text-sm sm:text-base text-muted-foreground" style={{
+            fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
+            lineHeight: '1.4',
+            marginTop: '0.5rem'
+          }}>
             Manage completed service deliveries and customer pickups
           </p>
         </div>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        <Card className="p-3 sm:p-4 bg-gradient-card border-0 shadow-soft">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="text-lg sm:text-2xl font-bold text-foreground">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 stats-grid" style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gap: 'clamp(0.75rem, 2vw, 1rem)',
+        width: '100%'
+      }}>
+        <Card className="p-3 sm:p-4 bg-gradient-card border-0 shadow-soft" style={{
+          padding: 'clamp(0.75rem, 2vw, 1rem)',
+          background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 15% 98%) 100%)',
+          border: 'none',
+          boxShadow: '0 2px 8px hsl(220 25% 15% / 0.08)',
+          borderRadius: '0.75rem',
+          minHeight: '80px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
+        }}>
+          <div className="flex items-center justify-between" style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+            minHeight: '48px'
+          }}>
+            <div style={{ flex: '1 1 auto', minWidth: '0' }}>
+              <div className="text-lg sm:text-2xl font-bold text-foreground" style={{
+                fontSize: 'clamp(1.125rem, 3vw, 1.5rem)',
+                fontWeight: '700',
+                lineHeight: '1.2'
+              }}>
                 {readyForDelivery}
               </div>
-              <div className="text-xs sm:text-sm text-muted-foreground">
+              <div className="text-xs sm:text-sm text-muted-foreground" style={{
+                fontSize: 'clamp(0.75rem, 2vw, 0.875rem)',
+                lineHeight: '1.3',
+                marginTop: '0.25rem'
+              }}>
                 Ready for Delivery
               </div>
             </div>
-            <Package className="h-6 w-6 sm:h-8 sm:w-8 text-blue-500" />
+            <Package className="h-6 w-6 sm:h-8 sm:w-8 text-blue-500" style={{
+              width: 'clamp(1.5rem, 4vw, 2rem)',
+              height: 'clamp(1.5rem, 4vw, 2rem)',
+              flexShrink: '0',
+              color: '#3b82f6'
+            }} />
           </div>
         </Card>
-        <Card className="p-3 sm:p-4 bg-gradient-card border-0 shadow-soft">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="text-lg sm:text-2xl font-bold text-foreground">
+        <Card className="p-3 sm:p-4 bg-gradient-card border-0 shadow-soft" style={{
+          padding: 'clamp(0.75rem, 2vw, 1rem)',
+          background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 15% 98%) 100%)',
+          border: 'none',
+          boxShadow: '0 2px 8px hsl(220 25% 15% / 0.08)',
+          borderRadius: '0.75rem',
+          minHeight: '80px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
+        }}>
+          <div className="flex items-center justify-between" style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+            minHeight: '48px'
+          }}>
+            <div style={{ flex: '1 1 auto', minWidth: '0' }}>
+              <div className="text-lg sm:text-2xl font-bold text-foreground" style={{
+                fontSize: 'clamp(1.125rem, 3vw, 1.5rem)',
+                fontWeight: '700',
+                lineHeight: '1.2'
+              }}>
                 {scheduledDeliveries}
               </div>
-              <div className="text-xs sm:text-sm text-muted-foreground">
+              <div className="text-xs sm:text-sm text-muted-foreground" style={{
+                fontSize: 'clamp(0.75rem, 2vw, 0.875rem)',
+                lineHeight: '1.3',
+                marginTop: '0.25rem'
+              }}>
                 Scheduled
               </div>
             </div>
-            <Clock className="h-6 w-6 sm:h-8 sm:w-8 text-warning" />
+            <Clock className="h-6 w-6 sm:h-8 sm:w-8 text-warning" style={{
+              width: 'clamp(1.5rem, 4vw, 2rem)',
+              height: 'clamp(1.5rem, 4vw, 2rem)',
+              flexShrink: '0',
+              color: '#f59e0b'
+            }} />
           </div>
         </Card>
-        <Card className="p-3 sm:p-4 bg-gradient-card border-0 shadow-soft">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="text-lg sm:text-2xl font-bold text-foreground">
+        <Card className="p-3 sm:p-4 bg-gradient-card border-0 shadow-soft" style={{
+          padding: 'clamp(0.75rem, 2vw, 1rem)',
+          background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 15% 98%) 100%)',
+          border: 'none',
+          boxShadow: '0 2px 8px hsl(220 25% 15% / 0.08)',
+          borderRadius: '0.75rem',
+          minHeight: '80px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
+        }}>
+          <div className="flex items-center justify-between" style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+            minHeight: '48px'
+          }}>
+            <div style={{ flex: '1 1 auto', minWidth: '0' }}>
+              <div className="text-lg sm:text-2xl font-bold text-foreground" style={{
+                fontSize: 'clamp(1.125rem, 3vw, 1.5rem)',
+                fontWeight: '700',
+                lineHeight: '1.2'
+              }}>
                 {outForDelivery}
               </div>
-              <div className="text-xs sm:text-sm text-muted-foreground">
+              <div className="text-xs sm:text-sm text-muted-foreground" style={{
+                fontSize: 'clamp(0.75rem, 2vw, 0.875rem)',
+                lineHeight: '1.3',
+                marginTop: '0.25rem'
+              }}>
                 Out for Delivery
               </div>
             </div>
-            <Truck className="h-6 w-6 sm:h-8 sm:w-8 text-purple-500" />
+            <Truck className="h-6 w-6 sm:h-8 sm:w-8 text-purple-500" style={{
+              width: 'clamp(1.5rem, 4vw, 2rem)',
+              height: 'clamp(1.5rem, 4vw, 2rem)',
+              flexShrink: '0',
+              color: '#8b5cf6'
+            }} />
           </div>
         </Card>
-        <Card className="p-3 sm:p-4 bg-gradient-card border-0 shadow-soft">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="text-lg sm:text-2xl font-bold text-foreground">
+        <Card className="p-3 sm:p-4 bg-gradient-card border-0 shadow-soft" style={{
+          padding: 'clamp(0.75rem, 2vw, 1rem)',
+          background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 15% 98%) 100%)',
+          border: 'none',
+          boxShadow: '0 2px 8px hsl(220 25% 15% / 0.08)',
+          borderRadius: '0.75rem',
+          minHeight: '80px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
+        }}>
+          <div className="flex items-center justify-between" style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+            minHeight: '48px'
+          }}>
+            <div style={{ flex: '1 1 auto', minWidth: '0' }}>
+              <div className="text-lg sm:text-2xl font-bold text-foreground" style={{
+                fontSize: 'clamp(1.125rem, 3vw, 1.5rem)',
+                fontWeight: '700',
+                lineHeight: '1.2'
+              }}>
                 {deliveredToday}
               </div>
-              <div className="text-xs sm:text-sm text-muted-foreground">
+              <div className="text-xs sm:text-sm text-muted-foreground" style={{
+                fontSize: 'clamp(0.75rem, 2vw, 0.875rem)',
+                lineHeight: '1.3',
+                marginTop: '0.25rem'
+              }}>
                 Delivered Today
               </div>
             </div>
-            <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-success" />
+            <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-success" style={{
+              width: 'clamp(1.5rem, 4vw, 2rem)',
+              height: 'clamp(1.5rem, 4vw, 2rem)',
+              flexShrink: '0',
+              color: '#10b981'
+            }} />
           </div>
         </Card>
       </div>
 
       {/* Search */}
-      <Card className="p-3 sm:p-4 bg-gradient-card border-0 shadow-soft">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+      <Card className="p-3 sm:p-4 bg-gradient-card border-0 shadow-soft" style={{
+        padding: 'clamp(0.75rem, 2vw, 1rem)',
+        background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 15% 98%) 100%)',
+        border: 'none',
+        boxShadow: '0 2px 8px hsl(220 25% 15% / 0.08)',
+        borderRadius: '0.75rem'
+      }}>
+        <div className="relative" style={{ position: 'relative', width: '100%' }}>
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" style={{
+            position: 'absolute',
+            left: '0.75rem',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: '1rem',
+            height: '1rem',
+            color: 'hsl(220 15% 45%)',
+            pointerEvents: 'none',
+            zIndex: '1'
+          }} />
           <Input
             placeholder="Search deliveries by customer, address, product..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
+            style={{
+              paddingLeft: '2.5rem',
+              width: '100%',
+              minHeight: '2.5rem',
+              fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
+              border: '1px solid hsl(220 15% 90%)',
+              borderRadius: '0.5rem',
+              backgroundColor: 'hsl(0 0% 100%)',
+              color: 'hsl(220 25% 15%)',
+              outline: 'none',
+              transition: 'border-color 0.2s ease'
+            }}
           />
         </div>
       </Card>
 
       {/* Delivery Items */}
-      <div className="space-y-4">
-        <h2 className="text-xl sm:text-2xl font-bold text-foreground">
+      <div className="space-y-4" style={{ 
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 'clamp(1rem, 3vw, 1.5rem)'
+      }}>
+        <h2 className="text-xl sm:text-2xl font-bold text-foreground" style={{
+          fontSize: 'clamp(1.25rem, 4vw, 1.5rem)',
+          fontWeight: '700',
+          lineHeight: '1.2',
+          color: 'hsl(220 25% 15%)',
+          margin: '0'
+        }}>
           Delivery Queue
         </h2>
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 delivery-grid" style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          gap: 'clamp(1rem, 3vw, 1.5rem)',
+          width: '100%'
+        }}>
           {filteredEnquiries.map((enquiry) => (
             <Card
               key={enquiry.id}
               className="p-4 sm:p-6 bg-gradient-card border-0 shadow-soft hover:shadow-medium transition-all duration-300"
+              style={{
+                padding: 'clamp(1rem, 3vw, 1.5rem)',
+                background: 'linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(220 15% 98%) 100%)',
+                border: 'none',
+                boxShadow: '0 2px 8px hsl(220 25% 15% / 0.08)',
+                borderRadius: '0.75rem',
+                transition: 'box-shadow 0.3s ease',
+                width: '100%',
+                minHeight: '200px',
+                display: 'flex',
+                flexDirection: 'column'
+              }}
             >
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4 gap-3">
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-foreground text-base sm:text-lg">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4 gap-3" style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'stretch',
+                justifyContent: 'space-between',
+                marginBottom: '1rem',
+                gap: '0.75rem',
+                width: '100%'
+              }}>
+                <div className="flex-1 min-w-0" style={{
+                  flex: '1 1 auto',
+                  minWidth: '0',
+                  width: '100%'
+                }}>
+                  <h3 className="font-semibold text-foreground text-base sm:text-lg" style={{
+                    fontSize: 'clamp(1rem, 3vw, 1.125rem)',
+                    fontWeight: '600',
+                    lineHeight: '1.3',
+                    color: 'hsl(220 25% 15%)',
+                    margin: '0 0 0.25rem 0',
+                    wordBreak: 'break-word'
+                  }}>
                     {enquiry.customerName}
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground" style={{
+                    fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
+                    lineHeight: '1.4',
+                    color: 'hsl(220 15% 45%)',
+                    margin: '0'
+                  }}>
                     {enquiry.phone}
                   </p>
                 </div>
@@ -449,22 +683,70 @@ export function DeliveryModule() {
                   className={`${getStatusColor(
                     enquiry.deliveryDetails?.status || "ready"
                   )} text-xs self-start`}
+                  style={{
+                    fontSize: 'clamp(0.75rem, 2vw, 0.875rem)',
+                    padding: '0.25rem 0.5rem',
+                    borderRadius: '0.375rem',
+                    fontWeight: '500',
+                    alignSelf: 'flex-start',
+                    flexShrink: '0',
+                    minWidth: 'fit-content'
+                  }}
                 >
                   {stringUtils.capitalizeWords(enquiry.deliveryDetails?.status || "ready")}
                 </Badge>
               </div>
 
-              <div className="space-y-3">
-                <div className="flex items-start space-x-2">
-                  <MapPin className="h-4 w-4 text-muted-foreground mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-foreground break-words">
+              <div className="space-y-3" style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.75rem',
+                flex: '1 1 auto'
+              }}>
+                <div className="flex items-start space-x-2" style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '0.5rem',
+                  width: '100%'
+                }}>
+                  <MapPin className="h-4 w-4 text-muted-foreground mt-0.5 flex-shrink-0" style={{
+                    width: '1rem',
+                    height: '1rem',
+                    color: 'hsl(220 15% 45%)',
+                    flexShrink: '0',
+                    marginTop: '0.125rem'
+                  }} />
+                  <span className="text-sm text-foreground break-words" style={{
+                    fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
+                    lineHeight: '1.4',
+                    color: 'hsl(220 25% 15%)',
+                    wordBreak: 'break-word',
+                    flex: '1 1 auto',
+                    minWidth: '0'
+                  }}>
                     {enquiry.address}
                   </span>
                 </div>
 
-                <div className="flex items-center space-x-2">
-                  <Package className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                  <span className="text-sm text-foreground">
+                <div className="flex items-center space-x-2" style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  width: '100%'
+                }}>
+                  <Package className="h-4 w-4 text-muted-foreground flex-shrink-0" style={{
+                    width: '1rem',
+                    height: '1rem',
+                    color: 'hsl(220 15% 45%)',
+                    flexShrink: '0'
+                  }} />
+                  <span className="text-sm text-foreground" style={{
+                    fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
+                    lineHeight: '1.4',
+                    color: 'hsl(220 25% 15%)',
+                    flex: '1 1 auto',
+                    minWidth: '0'
+                  }}>
                     {enquiry.product} ({enquiry.quantity} items)
                   </span>
                 </div>
@@ -513,8 +795,16 @@ export function DeliveryModule() {
 
                 {/* Show service final photo as before photo */}
                 {enquiry.deliveryDetails?.photos?.beforePhoto && (
-                  <div className="mt-3">
-                    <div className="text-sm font-semibold text-foreground">
+                  <div className="mt-3" style={{
+                    marginTop: '0.75rem',
+                    width: '100%'
+                  }}>
+                    <div className="text-sm font-semibold text-foreground" style={{
+                      fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
+                      fontWeight: '600',
+                      color: 'hsl(220 25% 15%)',
+                      marginBottom: '0.5rem'
+                    }}>
                       Service Completed Photo:
                     </div>
                     <img
@@ -524,10 +814,18 @@ export function DeliveryModule() {
                       loading="eager"
                       decoding="sync"
                       style={{ 
-                        imageRendering: 'crisp-edges',
-                        transform: 'translateZ(0)',
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden'
+                        width: '100%',
+                        maxHeight: '12rem',
+                        objectFit: 'contain',
+                        borderRadius: '0.375rem',
+                        border: '1px solid hsl(220 15% 90%)',
+                        backgroundColor: 'hsl(220 15% 96%)',
+                        display: 'block',
+                        margin: '0 auto',
+                        imageRendering: 'auto',
+                        WebkitImageRendering: 'auto',
+                        MozImageRendering: 'auto',
+                        msImageRendering: 'auto'
                       } as React.CSSProperties}
                     />
                   </div>
@@ -536,23 +834,49 @@ export function DeliveryModule() {
                 {/* Fallback: Show service photo directly if delivery photo missing */}
                 {!enquiry.deliveryDetails?.photos?.beforePhoto &&
                   enquiry.serviceDetails?.overallPhotos?.afterPhoto && (
-                    <div className="mt-3">
-                      <div className="text-xs text-muted-foreground mb-1">
+                    <div className="mt-3" style={{
+                      marginTop: '0.75rem',
+                      width: '100%'
+                    }}>
+                      <div className="text-xs text-muted-foreground mb-1" style={{
+                        fontSize: 'clamp(0.75rem, 2vw, 0.875rem)',
+                        color: 'hsl(220 15% 45%)',
+                        marginBottom: '0.25rem'
+                      }}>
                         Service Final Photo (Direct):
                       </div>
                       <img
                         src={enquiry.serviceDetails.overallPhotos.afterPhoto}
                         alt="Service completed"
                         className="w-full max-h-48 object-contain rounded-md border bg-gray-50"
-                      loading="eager"
-                      decoding="sync"
-                        style={{ imageRendering: 'auto' }}
+                        loading="eager"
+                        decoding="sync"
+                        style={{ 
+                          width: '100%',
+                          maxHeight: '12rem',
+                          objectFit: 'contain',
+                          borderRadius: '0.375rem',
+                          border: '1px solid hsl(220 15% 90%)',
+                          backgroundColor: 'hsl(220 15% 96%)',
+                          display: 'block',
+                          margin: '0 auto',
+                          imageRendering: 'auto',
+                          WebkitImageRendering: 'auto',
+                          MozImageRendering: 'auto',
+                          msImageRendering: 'auto'
+                        } as React.CSSProperties}
                       />
                     </div>
                   )}
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4 delivery-actions" style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr',
+                gap: '0.5rem',
+                marginTop: '1rem',
+                width: '100%'
+              }}>
                 {enquiry.deliveryDetails?.status === "ready" && (
                   <Dialog>
                     <DialogTrigger asChild>
@@ -765,5 +1089,6 @@ export function DeliveryModule() {
         </div>
       </div>
     </div>
+    </>
   );
 }
