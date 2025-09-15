@@ -767,12 +767,12 @@ export function DeliveryModule() {
                       Scheduled:{" "}
                       {new Date(
                         enquiry.deliveryDetails.scheduledTime
-                      ).toLocaleDateString("en-GB",{
-                        day: "2-digit",
-                        month: "2-digit",
+                      ).toLocaleString("en-IN", {
+                        day: "numeric",
+                        month: "short",
                         year: "numeric",
                         hour: "2-digit",
-                        minute: "2-digit",
+                        minute: "2-digit"
                       })}
                     </span>
                   </div>

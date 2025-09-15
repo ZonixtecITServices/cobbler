@@ -190,9 +190,39 @@ export function CompletedModule() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
+            style={{
+              '--placeholder-animation': 'scroll-left 15s linear infinite',
+            } as React.CSSProperties}
           />
         </div>
       </Card>
+      
+      <style>{`
+        @keyframes scroll-left {
+          0% {
+            transform: translateX(100%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+        
+        @media (max-width: 640px) {
+          input::placeholder {
+            animation: var(--placeholder-animation);
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            width: 200%;
+          }
+        }
+        
+        @media (min-width: 641px) {
+          input::placeholder {
+            animation: none;
+          }
+        }
+      `}</style>
 
       {/* Completed Items */}
       <div className="space-y-4">
