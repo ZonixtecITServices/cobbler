@@ -20,18 +20,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
-  MapPin,
-  Clock,
-  User,
-  Package,
-  Truck,
-  Home,
   Search,
   Camera,
   Upload,
   Send,
-  CheckCircle,
   PenTool,
+  MapPin,
+  Package,
+  Clock,
+  User,
+  DollarSign,
 } from "lucide-react";
 import { Enquiry, DeliveryStatus, DeliveryMethod } from "@/types";
 import { stringUtils } from "@/utils";
@@ -431,12 +429,14 @@ export function DeliveryModule() {
                 Ready for Delivery
               </div>
             </div>
-            <Package className="h-6 w-6 sm:h-8 sm:w-8 text-blue-500" style={{
+            <div className="h-6 w-6 sm:h-8 sm:w-8 text-blue-500 flex items-center justify-center" style={{
               width: 'clamp(1.5rem, 4vw, 2rem)',
               height: 'clamp(1.5rem, 4vw, 2rem)',
               flexShrink: '0',
               color: '#3b82f6'
-            }} />
+            }}>
+              <span className="text-lg font-bold">📦</span>
+            </div>
           </div>
         </Card>
         <Card className="p-3 sm:p-4 bg-gradient-card border-0 shadow-soft" style={{
@@ -473,12 +473,14 @@ export function DeliveryModule() {
                 Scheduled
               </div>
             </div>
-            <Clock className="h-6 w-6 sm:h-8 sm:w-8 text-warning" style={{
+            <div className="h-6 w-6 sm:h-8 sm:w-8 text-warning flex items-center justify-center" style={{
               width: 'clamp(1.5rem, 4vw, 2rem)',
               height: 'clamp(1.5rem, 4vw, 2rem)',
               flexShrink: '0',
               color: '#f59e0b'
-            }} />
+            }}>
+              {/* <span className="text-lg font-bold">⏰</span> */}
+            </div>
           </div>
         </Card>
         <Card className="p-3 sm:p-4 bg-gradient-card border-0 shadow-soft" style={{
@@ -515,12 +517,14 @@ export function DeliveryModule() {
                 Out for Delivery
               </div>
             </div>
-            <Truck className="h-6 w-6 sm:h-8 sm:w-8 text-purple-500" style={{
+            <div className="h-6 w-6 sm:h-8 sm:w-8 text-purple-500 flex items-center justify-center" style={{
               width: 'clamp(1.5rem, 4vw, 2rem)',
               height: 'clamp(1.5rem, 4vw, 2rem)',
               flexShrink: '0',
               color: '#8b5cf6'
-            }} />
+            }}>
+              {/* <span className="text-lg font-bold">🚚</span> */}
+            </div>
           </div>
         </Card>
         <Card className="p-3 sm:p-4 bg-gradient-card border-0 shadow-soft" style={{
@@ -557,12 +561,14 @@ export function DeliveryModule() {
                 Delivered Today
               </div>
             </div>
-            <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-success" style={{
+            <div className="h-6 w-6 sm:h-8 sm:w-8 text-success flex items-center justify-center" style={{
               width: 'clamp(1.5rem, 4vw, 2rem)',
               height: 'clamp(1.5rem, 4vw, 2rem)',
               flexShrink: '0',
               color: '#10b981'
-            }} />
+            }}>
+              <span className="text-lg font-bold">✓</span>
+            </div>
           </div>
         </Card>
       </div>
@@ -584,11 +590,11 @@ export function DeliveryModule() {
             width: '1rem',
             height: '1rem',
             color: 'hsl(220 15% 45%)',
-            pointerEvents: 'none',
+            pointerEvents: 'none' ,
             zIndex: '1'
           }} />
           <Input
-            placeholder="Search deliveries by customer, address, product..."
+            placeholder="Search Deliveries"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
@@ -697,82 +703,26 @@ export function DeliveryModule() {
                 </Badge>
               </div>
 
-              <div className="space-y-3" style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.75rem',
-                flex: '1 1 auto'
-              }}>
-                <div className="flex items-start space-x-2" style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '0.5rem',
-                  width: '100%'
-                }}>
-                  <MapPin className="h-4 w-4 text-muted-foreground mt-0.5 flex-shrink-0" style={{
-                    width: '1rem',
-                    height: '1rem',
-                    color: 'hsl(220 15% 45%)',
-                    flexShrink: '0',
-                    marginTop: '0.125rem'
-                  }} />
-                  <span className="text-sm text-foreground break-words" style={{
-                    fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
-                    lineHeight: '1.4',
-                    color: 'hsl(220 25% 15%)',
-                    wordBreak: 'break-word',
-                    flex: '1 1 auto',
-                    minWidth: '0'
-                  }}>
-                    {enquiry.address}
-                  </span>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <span className="text-sm text-foreground break-words">{enquiry.address}</span>
                 </div>
 
-                <div className="flex items-center space-x-2" style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  width: '100%'
-                }}>
-                  <Package className="h-4 w-4 text-muted-foreground flex-shrink-0" style={{
-                    width: '1rem',
-                    height: '1rem',
-                    color: 'hsl(220 15% 45%)',
-                    flexShrink: '0'
-                  }} />
-                  <span className="text-sm text-foreground" style={{
-                    fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
-                    lineHeight: '1.4',
-                    color: 'hsl(220 25% 15%)',
-                    flex: '1 1 auto',
-                    minWidth: '0'
-                  }}>
+                <div className="flex items-center space-x-2">
+                  <span className="text-sm text-foreground">
                     {enquiry.product} ({enquiry.quantity} items)
                   </span>
                 </div>
 
-                {/* {enquiry.deliveryDetails?.scheduledTime && (
-                  <div className="flex items-center space-x-2">
-                    <Clock className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                    <span className="text-sm text-foreground">
-                      Scheduled: {enquiry.deliveryDetails.scheduledTime}
-                    </span>
-                  </div>
-                )} */}
-
                 {enquiry.deliveryDetails?.scheduledTime && (
                   <div className="flex items-center space-x-2">
-                    <Clock className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                     <span className="text-sm text-foreground">
-                      Scheduled:{" "}
-                      {new Date(
+                      Scheduled: {new Date(
                         enquiry.deliveryDetails.scheduledTime
-                      ).toLocaleString("en-IN", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit"
+                      ).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric"
                       })}
                     </span>
                   </div>
@@ -780,7 +730,6 @@ export function DeliveryModule() {
 
                 {enquiry.deliveryDetails?.assignedTo && (
                   <div className="flex items-center space-x-2">
-                    <User className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                     <span className="text-sm text-foreground">
                       Assigned: {enquiry.deliveryDetails.assignedTo}
                     </span>
@@ -884,7 +833,7 @@ export function DeliveryModule() {
                         size="sm"
                         className="bg-gradient-primary hover:opacity-90 text-xs sm:text-sm"
                       >
-                        <Clock className="h-3 w-3 mr-1" />
+                        <span className="mr-1">⏰</span>
                         Schedule Delivery
                       </Button>
                     </DialogTrigger>
@@ -960,7 +909,7 @@ export function DeliveryModule() {
                       markOutForDelivery(enquiry.id, "Delivery Person")
                     }
                   >
-                    <Truck className="h-3 w-3 mr-1" />
+                    {/* <span className="mr-1">🚚</span> */}
                     Mark Out for Delivery
                   </Button>
                 )}
@@ -972,7 +921,7 @@ export function DeliveryModule() {
                         size="sm"
                         className="bg-green-600 hover:bg-green-700 text-xs sm:text-sm"
                       >
-                        <CheckCircle className="h-3 w-3 mr-1" />
+                        {/* <span className="mr-1">✓</span> */}
                         Mark Delivered
                       </Button>
                     </DialogTrigger>
@@ -1071,7 +1020,7 @@ export function DeliveryModule() {
                           className="w-full bg-green-600 hover:bg-green-700"
                           disabled={!selectedImage}
                         >
-                          <CheckCircle className="h-4 w-4 mr-2" />
+                          <span className="mr-2">✓</span>
                           Confirm Delivery
                         </Button>
                         {!selectedImage && (
