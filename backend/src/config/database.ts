@@ -191,7 +191,7 @@ export const createTables = async (): Promise<void> => {
       // Pickup stage details - Enhanced for proper pickup workflow
       `CREATE TABLE IF NOT EXISTS pickup_details (
         id INT PRIMARY KEY AUTO_INCREMENT,
-        enquiry_id INT NOT NULL,
+        enquiry_id BIGINT NOT NULL,
         status ENUM('scheduled', 'assigned', 'collected', 'received') NOT NULL DEFAULT 'scheduled',
         scheduled_time DATETIME NULL,
         assigned_to VARCHAR(100) NULL,
@@ -212,7 +212,7 @@ export const createTables = async (): Promise<void> => {
       // Service stage details - Enhanced for proper service workflow
       `CREATE TABLE IF NOT EXISTS service_details (
         id INT PRIMARY KEY AUTO_INCREMENT,
-        enquiry_id INT NOT NULL,
+        enquiry_id BIGINT NOT NULL,
         estimated_cost DECIMAL(10,2) NULL,
         actual_cost DECIMAL(10,2) NULL,
         work_notes TEXT NULL,
@@ -232,7 +232,7 @@ export const createTables = async (): Promise<void> => {
       // Service types for each enquiry
       `CREATE TABLE IF NOT EXISTS service_types (
         id INT PRIMARY KEY AUTO_INCREMENT,
-        enquiry_id INT NOT NULL,
+        enquiry_id BIGINT NOT NULL,
         service_type ENUM('Sole Replacement', 'Zipper Repair', 'Cleaning & Polish', 'Stitching', 'Leather Treatment', 'Hardware Repair') NOT NULL,
         status ENUM('pending', 'in-progress', 'done') DEFAULT 'pending',
         department VARCHAR(255) NULL,
@@ -250,7 +250,7 @@ export const createTables = async (): Promise<void> => {
       // Photos storage - Enhanced with proper constraints and types
       `CREATE TABLE IF NOT EXISTS photos (
         id INT PRIMARY KEY AUTO_INCREMENT,
-        enquiry_id INT NOT NULL,
+        enquiry_id BIGINT NOT NULL,
         stage ENUM('pickup', 'service', 'delivery', 'billing') NOT NULL,
         photo_type ENUM('before_photo', 'after_photo', 'overall_before', 'overall_after', 'collection_proof', 'received_condition') NOT NULL,
         photo_data LONGTEXT NOT NULL,
@@ -271,7 +271,7 @@ export const createTables = async (): Promise<void> => {
       // Delivery stage details
       `CREATE TABLE IF NOT EXISTS delivery_details (
         id INT PRIMARY KEY AUTO_INCREMENT,
-        enquiry_id INT NOT NULL,
+        enquiry_id BIGINT NOT NULL,
         status ENUM('ready', 'scheduled', 'out-for-delivery', 'delivered') DEFAULT 'ready',
         delivery_method ENUM('customer-pickup', 'home-delivery') DEFAULT 'customer-pickup',
         scheduled_time DATETIME NULL,
@@ -290,7 +290,7 @@ export const createTables = async (): Promise<void> => {
       // Billing details - Updated to match current BillingDetails structure
       `CREATE TABLE IF NOT EXISTS billing_details (
         id INT PRIMARY KEY AUTO_INCREMENT,
-        enquiry_id INT NOT NULL,
+        enquiry_id BIGINT NOT NULL,
         final_amount DECIMAL(10,2) NOT NULL,
         gst_included BOOLEAN DEFAULT TRUE,
         gst_rate DECIMAL(5,2) DEFAULT 18.00,
